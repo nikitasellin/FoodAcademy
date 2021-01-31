@@ -1,9 +1,9 @@
 ## Описание.
 Обучающий сайт "Food Academy".
 
-Layout проекта:
+Layout:
 ```
-app/ - приложение
+app/ - проект
     manage.py
     config/
         settings/
