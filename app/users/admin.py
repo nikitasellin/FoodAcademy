@@ -4,10 +4,12 @@ from django.contrib.auth.admin import UserAdmin
 from .models import Administrator, Teacher, Student
 
 
+@admin.register(Administrator)
 class AdministratorAdmin(UserAdmin):
     model = Administrator
     list_display = ('first_name', 'last_name', 'email',
-                    'phone_number', 'is_active', 'is_staff')
+                    'phone_number', 'is_active', 'is_staff',
+                    'is_superuser')
     list_display_links = ('email',)
     list_filter = ('is_active', 'is_staff')
     search_fields = ('email', 'last_name')
@@ -17,17 +19,18 @@ class AdministratorAdmin(UserAdmin):
         ('Основная информация',
          {'fields': ('email', 'password', 'first_name', 'last_name')}),
         ('Статус',
-         {'fields': ('is_active', 'is_staff')})
+         {'fields': ('is_active', 'is_staff', 'is_superuser')})
     )
     add_fieldsets = (
         ('Основная информация',
          {'fields':
              ('email', 'first_name', 'last_name', 'password1', 'password2')}),
         ('Статус',
-         {'fields': ('is_active', 'is_staff')})
+         {'fields': ('is_active', 'is_staff', 'is_superuser')})
     )
 
 
+@admin.register(Teacher)
 class TeacherAdmin(AdministratorAdmin):
     model = Teacher
 
@@ -50,6 +53,7 @@ class TeacherAdmin(AdministratorAdmin):
     )
 
 
+@admin.register(Student)
 class StudentAdmin(AdministratorAdmin):
     model = Student
 
@@ -70,8 +74,3 @@ class StudentAdmin(AdministratorAdmin):
         ('Дополнительная информация',
          {'fields': ('birth_date',)})
     )
-
-
-admin.site.register(Administrator, AdministratorAdmin)
-admin.site.register(Teacher, TeacherAdmin)
-admin.site.register(Student, StudentAdmin)

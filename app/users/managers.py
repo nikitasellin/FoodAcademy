@@ -1,7 +1,8 @@
 from django.contrib.auth.base_user import BaseUserManager
+from model_utils.managers import InheritanceManager
 
 
-class CommonUserManager(BaseUserManager):
+class CommonUserManager(BaseUserManager, InheritanceManager):
     """
     'CommonUser' model manager (authorization via e-mail).
     """
@@ -25,4 +26,7 @@ class CommonUserManager(BaseUserManager):
             raise ValueError('Для суперпользователя is_superuser=True.')
         if kwargs.get('is_active') is not True:
             raise ValueError('Для суперпользователя is_active=True.')
-        return self.create_user(email, password, **kwargs)
+        user = self.create_user(email, password, **kwargs)
+        user.is_superuser = True
+        user.save()
+        return user
