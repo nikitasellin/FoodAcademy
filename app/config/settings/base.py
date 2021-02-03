@@ -1,8 +1,10 @@
 # Common settings
+import os
 
-from pathlib import Path
+def root(*dirs):
+    base_dir = os.path.join(os.path.dirname(__file__), '..', '..')
+    return os.path.abspath(os.path.join(base_dir, *dirs))
 
-BASE_DIR = Path(__file__).resolve().parent.parent
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -32,7 +34,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -75,5 +77,8 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [root('static')]
+STATIC_ROOT = root('static_root')
+
 
 AUTH_USER_MODEL = 'users.CommonUser'

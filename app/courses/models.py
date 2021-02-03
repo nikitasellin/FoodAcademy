@@ -10,7 +10,7 @@ class Course(models.Model):
 
     # @TODO! Add image field before creating views.
     title = models.CharField(
-        'Название', max_length=100, blank=False, null=False)
+        'Название', max_length=100, unique=True, blank=False, null=False)
     description = models.TextField('Описание', blank=False, null=False)
     teachers = models.ManyToManyField(
         Teacher, related_name='courses')
@@ -25,7 +25,7 @@ class CourseGroup(models.Model):
         verbose_name_plural = 'Группы'
 
     title = models.CharField(
-        'Название', max_length=100, blank=False, null=False)
+        'Название', max_length=100, unique=True, blank=False, null=False)
     course = models.ForeignKey(
         Course, related_name='course_group', on_delete=models.PROTECT)
     students = models.ManyToManyField(

@@ -1,0 +1,45 @@
+<form action="" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {% if form.non_field_errors %}
+    <div class="alert alert-danger" role="alert">
+    {% for error in form.non_field_errors %}
+      <p class="mb-0">{% if forloop.last %} {{ error }} {% endif %}</p>
+    {% endfor %}
+    </div>
+  {% endif %}
+  {% for field in form %}
+    <div class="form-group">
+      <div class="row">
+        <div class="col-lg-2">
+          {{ field.label_tag }}
+        </div>
+        <div class="col-lg-4">
+          {% if field.field.widget.input_type == "checkbox" %}
+            {% for choice in field %}
+              <p class="form-check text-nowrap">
+                {{ choice }}
+                {{ choice.label }}
+              </p>
+            {% endfor %}
+          {% else %}
+            {{ field }}
+          {% endif %}
+          <div>
+            {% for error in field.errors %}
+              <small class="form-text alert-danger">
+                {{ error }}
+              </small>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% if field.help_text %}
+        <small class="form-text text-muted">
+          {{ field.help_text|safe }}
+        </small>
+      {% endif %}
+    </div>
+  {% endfor %}
+  <input type="hidden" name="next" value="{{ next }}" />
+  <button type="submit" class="btn btn-secondary">Ввод</button>
+</form>
