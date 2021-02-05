@@ -1,6 +1,9 @@
 # Common settings
 import os
 
+from django.urls import reverse_lazy
+
+
 def root(*dirs):
     base_dir = os.path.join(os.path.dirname(__file__), '..', '..')
     return os.path.abspath(os.path.join(base_dir, *dirs))
@@ -80,5 +83,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [root('static')]
 STATIC_ROOT = root('static_root')
 
-
 AUTH_USER_MODEL = 'users.CommonUser'
+
+# Redirect after login (Default redirects to /accounts/profile/)
+LOGIN_REDIRECT_URL = '/'
+
+LOGOUT_REDIRECT_URL = reverse_lazy('users:login')

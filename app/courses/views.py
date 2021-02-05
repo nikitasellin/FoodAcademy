@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, UpdateView
 
 from .models import Course
 from .forms import CourseForm
@@ -18,4 +18,12 @@ class CoursesListView(ListView):
 class AddCourseView(SuperUserPassesTestMixin, CreateView):
     model = Course
     form_class = CourseForm
+    extra_context = {'page_title': 'страница добавления курса'}
+    success_url = reverse_lazy('courses:index')
+
+
+class EditCourseView(SuperUserPassesTestMixin, UpdateView):
+    model = Course
+    form_class = CourseForm
+    extra_context = {'page_title': 'страница редактирования курса'}
     success_url = reverse_lazy('courses:index')

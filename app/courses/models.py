@@ -53,8 +53,10 @@ class Schedule(models.Model):
     finish_time = models.TimeField(
         'Время окончания', blank=False, null=False)
     description = models.TextField('Описание', blank=False, null=False)
+    teacher = models.ForeignKey(
+        Teacher, related_name='schedules', on_delete=models.PROTECT)
     course_group = models.ForeignKey(
-        CourseGroup, related_name='schedule', on_delete=models.PROTECT)
+        CourseGroup, related_name='schedules', on_delete=models.PROTECT)
 
     @property
     def lesson_period(self):
