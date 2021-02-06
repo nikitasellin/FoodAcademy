@@ -6,6 +6,8 @@ from django.db import models
 from django.core.validators import RegexValidator
 from django.urls import reverse_lazy
 
+from easy_thumbnails.fields import ThumbnailerImageField
+
 from .managers import CommonUserManager
 
 
@@ -64,7 +66,7 @@ class Teacher(CommonUser):
         verbose_name_plural = 'Преподаватели'
 
     bio = models.TextField('Биография', blank=True, null=True)
-    avatar = models.ImageField(
+    avatar = ThumbnailerImageField(
         'Аватар', default='teacher/avatar.png', upload_to=unique_file_name)
 
     @property

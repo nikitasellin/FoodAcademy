@@ -17,6 +17,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'easy_thumbnails',
+
     'users.apps.UsersConfig',
     'courses.apps.CoursesConfig',
     'contactus.apps.ContactusConfig'
@@ -91,3 +93,10 @@ AUTH_USER_MODEL = 'users.CommonUser'
 LOGIN_REDIRECT_URL = '/'
 
 LOGOUT_REDIRECT_URL = reverse_lazy('users:login')
+
+THUMBNAIL_ALIASES = {
+    '': {
+        'thumbnail': {'size': (200, 200), 'crop': True},
+        'photo': {'size': (300, 300), 'crop': True},
+    },
+}
