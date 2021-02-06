@@ -18,12 +18,12 @@ class CoursesListView(ListView):
 class AddCourseView(SuperUserPassesTestMixin, CreateView):
     model = Course
     form_class = CourseForm
-    extra_context = {'page_title': 'страница добавления курса'}
+    extra_context = {'page_title': 'добавление нового курса'}
     success_url = reverse_lazy('courses:index')
 
 
 class EditCourseView(SuperUserPassesTestMixin, UpdateView):
     model = Course
     form_class = CourseForm
-    extra_context = {'page_title': 'страница редактирования курса'}
+    extra_context = {'page_title': 'редактирование курса'}
     success_url = reverse_lazy('courses:index')

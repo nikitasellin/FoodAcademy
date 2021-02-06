@@ -1,11 +1,47 @@
 {% extends 'base.html' %}
 
+{% block title %}
+  Список курсов.
+{% endblock %}
+
+{% block admin_only %}
+  <a href="{% url 'courses:add_course' %}">
+    <button class="btn btn-light" type="button">Добавить курс</button>
+  </a>
+{% endblock %}
+
 {% block body %}
   {% for course in course_list %}
     <ul>
       <li>
-        {{ course }}<a href="{% url 'courses:edit_course' course.pk %}">Редактировать</a>
+        {{ course }}
+        {% if user.is_superuser %}
+          <a href="{% url 'courses:edit_course' course.pk %}">Редактировать</a>
+        {% endif %}
       </li>
     </ul>
   {% endfor %}
 {% endblock %}
+
+
+<!--
+{% block editor_buttons %}
+<a href="{% url 'course_add' %}"><button class="btn btn-success" type="button">Add</button></a>
+{% endblock %}
+{% block content %}
+  <section id="courses">
+    <div class="container mt-5 pt-3 pb-2">
+      <div class="row mt-5 pt-3 pb-2">
+      <div class="card-deck px-3">
+        {% for course in courses %}
+        <div class="card text-center px-0 pb-2">
+            <a href="{{ course.get_absolute_url }}"><img class="img-fluid mb-3" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ course.name }}" /></a>
+            <div class="name">{{ course.name }}</div>
+        </div>
+        {% endfor %}
+    </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+-->

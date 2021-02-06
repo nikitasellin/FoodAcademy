@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Список преподавателей.
+{% endblock %}
+
+{% block admin_only %}
+  <a href="{% url 'users:add_teacher' %}">
+    <button class="btn btn-light" type="button">Добавить преподавателя</button>
+  </a>
+{% endblock %}
+
+{% block body %}
+  {% for teacher in teacher_list %}
+    <ul>
+      <li>
+        {{ teacher }}
+        {% if user.is_superuser %}
+          <a href="{% url 'users:edit_teacher' teacher.pk %}">Редактировать</a>
+        {% endif %}
+      </li>
+    </ul>
+  {% endfor %}
+{% endblock %}
