@@ -1,7 +1,9 @@
 from django.db import models
 from django.urls import reverse_lazy
 
-from users.models import Teacher, Student
+from easy_thumbnails.fields import ThumbnailerImageField
+
+from users.models import Teacher, Student, unique_file_name
 
 
 class Course(models.Model):
@@ -9,12 +11,13 @@ class Course(models.Model):
         verbose_name = 'Курс'
         verbose_name_plural = 'Курсы'
 
-    # @TODO! Add image field before creating views.
     title = models.CharField(
         'Название', max_length=100, unique=True, blank=False, null=False)
     description = models.TextField('Описание', blank=False, null=False)
     teachers = models.ManyToManyField(
         Teacher, related_name='courses')
+    image = ThumbnailerImageField(
+        'Изображение', default='course/image.png', upload_to=unique_file_name)
 
     @property
     def get_absolute_url(self):

@@ -53,8 +53,8 @@ class Administrator(CommonUser):
         verbose_name_plural = 'Администраторы'
 
 
-def unique_file_name(user, filename):
-    directory = user.__class__.__name__.lower()
+def unique_file_name(instance, filename):
+    directory = instance.__class__.__name__.lower()
     ext = filename.split('.')[-1]
     filename = f'({uuid.uuid4()}.{ext})'
     return os.path.join(directory, filename)

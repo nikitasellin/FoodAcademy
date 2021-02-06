@@ -19,14 +19,16 @@
         <div class="col mb-4">
           <div class="card">
             <a href="{% url 'courses:course_detail' course.pk %}" class="card-link">
-              <img src="..." class="card-img-top" alt="{{ course }}">
+              <img src="{{ course.image.thumbnail.url }}" class="card-img-top" alt="{{ course }}">
             </a>
             <div class="card-body">
-              <h5 class="card-title">{{ course }}</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <h5 class="card-title text-center">{{ course|title }}</h5>
               {% if user.is_superuser %}
-                <a href="{% url 'courses:course_edit' course.pk %}" class="card-link">Редактировать</a>
-                <a href="{% url 'courses:course_delete' course.pk %}" class="card-link">Удалить</a>
+                <p class="card-text text-center">
+                  <a href="{% url 'courses:course_edit' course.pk %}" class="card-link">Редактировать</a>
+                  <br>
+                  <a href="{% url 'courses:course_delete' course.pk %}" class="card-link">Удалить</a>
+                </p>
               {% endif %}
             </div>
           </div>

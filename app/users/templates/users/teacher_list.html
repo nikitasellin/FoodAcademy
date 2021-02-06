@@ -26,6 +26,7 @@
               {% if user.is_superuser %}
                 <p class="card-text text-center">
                   <a href="{% url 'users:teacher_edit' teacher.pk %}" class="card-link">Редактировать</a>
+                  <br>
                   <a href="{% url 'users:teacher_delete' teacher.pk %}" class="card-link">Удалить</a>
                 </p>
               {% endif %}

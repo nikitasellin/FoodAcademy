@@ -6,7 +6,7 @@ from .models import Course, Teacher
 class CourseForm(forms.ModelForm):
     class Meta:
         model = Course
-        fields = ('title', 'description', 'teachers')
+        fields = ('title', 'description', 'image', 'teachers')
 
     teachers = forms.ModelMultipleChoiceField(
         label='Преподаватели',

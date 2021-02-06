@@ -96,7 +96,7 @@ LOGOUT_REDIRECT_URL = reverse_lazy('users:login')
 
 THUMBNAIL_ALIASES = {
     '': {
-        'thumbnail': {'size': (200, 200), 'crop': True},
-        'photo': {'size': (300, 300), 'crop': True},
+        'thumbnail': {'size': (200, 200), 'crop': 'smart'},
+        'photo': {'size': (300, 300), 'crop': 'smart'},
     },
 }

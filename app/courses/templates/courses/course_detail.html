@@ -11,9 +11,9 @@
     <div class="row">
       <div class="col-lg-4 text-left">
         {% if course.image %}
-          image thumb
+          <img src="{{ course.image.photo.url }}" class="img-thumbnail" alt="Изображение">
         {% else %}
-          default thumb
+          Изображение не загружено
         {% endif %}
       </div>
       <div class="col-lg-8 text-left">
