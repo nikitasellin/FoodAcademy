@@ -10,10 +10,10 @@
     <hr>
     <div class="row">
       <div class="col-lg-4 text-left">
-        {% if teacher.image %}
-          image thumb
+        {% if teacher.avatar %}
+          <img src="{{ teacher.avatar.url }}" class="img-thumbnail" alt="Avatar">
         {% else %}
-          default thumb
+          No avatar
         {% endif %}
       </div>
       <div class="col-lg-8 text-left">

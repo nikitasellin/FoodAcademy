@@ -1,3 +1,6 @@
+import uuid
+import os
+
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.core.validators import RegexValidator
@@ -48,12 +51,21 @@ class Administrator(CommonUser):
         verbose_name_plural = 'Администраторы'
 
 
+def unique_file_name(user, filename):
+    directory = user.__class__.__name__.lower()
+    ext = filename.split('.')[-1]
+    filename = f'({uuid.uuid4()}.{ext})'
+    return os.path.join(directory, filename)
+
+
 class Teacher(CommonUser):
     class Meta:
         verbose_name = 'Преподаватель'
         verbose_name_plural = 'Преподаватели'
 
     bio = models.TextField('Биография', blank=True, null=True)
+    avatar = models.ImageField(
+        'Аватар', default='teacher/avatar.png', upload_to=unique_file_name)
 
     @property
     def get_absolute_url(self):

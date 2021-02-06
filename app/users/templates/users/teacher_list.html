@@ -19,16 +19,15 @@
         <div class="col mb-4">
           <div class="card">
             <a href="{% url 'users:teacher_detail' teacher.pk %}" class="card-link">
-              <img src="..." class="card-img-top" alt="{{ teacher }}">
+              <img src="{{ teacher.avatar.url }}" class="card-img-top" alt="{{ teacher }}">
             </a>
             <div class="card-body">
-              <h5 class="card-title">{{ teacher }}</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.
-
-              </p>
+              <h3 class="card-title text-center">{{ teacher|title }}</h3>
               {% if user.is_superuser %}
-                <a href="{% url 'users:teacher_edit' teacher.pk %}" class="card-link">Редактировать</a>
-                <a href="{% url 'users:teacher_delete' teacher.pk %}" class="card-link">Удалить</a>
+                <p class="card-text text-center">
+                  <a href="{% url 'users:teacher_edit' teacher.pk %}" class="card-link">Редактировать</a>
+                  <a href="{% url 'users:teacher_delete' teacher.pk %}" class="card-link">Удалить</a>
+                </p>
               {% endif %}
             </div>
           </div>

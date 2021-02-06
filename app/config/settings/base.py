@@ -82,6 +82,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [root('static')]
 STATIC_ROOT = root('static_root')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = root('media')
 
 AUTH_USER_MODEL = 'users.CommonUser'
 
