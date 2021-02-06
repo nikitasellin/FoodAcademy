@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse_lazy
 
 from users.models import Teacher, Student
 
@@ -14,6 +15,11 @@ class Course(models.Model):
     description = models.TextField('Описание', blank=False, null=False)
     teachers = models.ManyToManyField(
         Teacher, related_name='courses')
+
+    @property
+    def get_absolute_url(self):
+        return reverse_lazy(
+            'courses:details', kwargs={'pk': self.pk})
 
     def __str__(self):
         return self.title

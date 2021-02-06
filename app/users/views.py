@@ -1,5 +1,5 @@
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 
 from courses.views import SuperUserPassesTestMixin
 
@@ -8,6 +8,10 @@ from .forms import TeacherForm
 
 
 class TeacherListView(ListView):
+    model = Teacher
+
+
+class TeacherDetailView(DetailView):
     model = Teacher
 
 

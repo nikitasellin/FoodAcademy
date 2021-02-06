@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 
 from .models import Course
 from .forms import CourseForm
@@ -12,6 +12,10 @@ class SuperUserPassesTestMixin(UserPassesTestMixin):
 
 
 class CourseListView(ListView):
+    model = Course
+
+
+class CourseDetailView(DetailView):
     model = Course
 
 

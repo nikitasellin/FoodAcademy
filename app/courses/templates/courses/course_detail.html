@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Описание курса
+{% endblock %}
+
+{% block body %}
+  <div class="container">
+    <h1 class="text-center">Описание курса "{{ course.title }}"</h1>
+    <hr>
+    <div class="row">
+      <div class="col">
+        {% if course.image %}
+          image thumb
+        {% else %}
+          default thumb
+        {% endif %}
+      </div>
+      <div class="col text-left">
+        teachers list
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col">
+        <p>
+          {{ course.description|linebreaks }}
+        </p>
+      </div>
+    </div>
+    <hr>
+  </div>
+{% endblock %}
