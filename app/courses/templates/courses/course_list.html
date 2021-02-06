@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-  Список курсов.
+  Список курсов
 {% endblock %}
 
 {% block admin_only %}
@@ -11,37 +11,27 @@
 {% endblock %}
 
 {% block body %}
-  {% for course in course_list %}
-    <ul>
-      <li>
-        {{ course }}
-        {% if user.is_superuser %}
-          <a href="{% url 'courses:edit_course' course.pk %}">Редактировать</a>
-        {% endif %}
-      </li>
-    </ul>
-  {% endfor %}
-{% endblock %}
-
-
-<!--
-{% block editor_buttons %}
-<a href="{% url 'course_add' %}"><button class="btn btn-success" type="button">Add</button></a>
-{% endblock %}
-{% block content %}
-  <section id="courses">
-    <div class="container mt-5 pt-3 pb-2">
-      <div class="row mt-5 pt-3 pb-2">
-      <div class="card-deck px-3">
-        {% for course in courses %}
-        <div class="card text-center px-0 pb-2">
-            <a href="{{ course.get_absolute_url }}"><img class="img-fluid mb-3" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ course.name }}" /></a>
-            <div class="name">{{ course.name }}</div>
+  <div class="container">
+    <h1 class="text-center">Список курсов</h1>
+    <hr>
+    <div class="row row-cols-1 row-cols-md-3">
+      {% for course in course_list %}
+        <div class="col mb-4">
+          <div class="card">
+            <a href="{% url 'courses:edit_course' course.pk %}" class="card-link">
+              <img src="..." class="card-img-top" alt="{{ course }}">
+            </a>
+            <div class="card-body">
+              <h5 class="card-title">{{ course }}</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              {% if user.is_superuser %}
+                <a href="{% url 'courses:edit_course' course.pk %}" class="card-link">Редактировать</a>
+                <a href="{% url 'courses:delete_course' course.pk %}" class="card-link">Удалить</a>
+              {% endif %}
+            </div>
+          </div>
         </div>
-        {% endfor %}
+      {% endfor %}
     </div>
-      </div>
-    </div>
-  </section>
+  </div>
 {% endblock %}
--->

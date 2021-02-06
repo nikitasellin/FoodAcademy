@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-  Список преподавателей.
+  Список преподавателей
 {% endblock %}
 
 {% block admin_only %}
@@ -11,14 +11,29 @@
 {% endblock %}
 
 {% block body %}
-  {% for teacher in teacher_list %}
-    <ul>
-      <li>
-        {{ teacher }}
-        {% if user.is_superuser %}
-          <a href="{% url 'users:edit_teacher' teacher.pk %}">Редактировать</a>
-        {% endif %}
-      </li>
-    </ul>
-  {% endfor %}
+  <div class="container">
+    <h1 class="text-center">Список преподавателей</h1>
+    <hr>
+    <div class="row row-cols-1 row-cols-md-3">
+      {% for teacher in teacher_list %}
+        <div class="col mb-4">
+          <div class="card">
+            <a href="{% url 'users:edit_teacher' teacher.pk %}" class="card-link">
+              <img src="..." class="card-img-top" alt="{{ teacher }}">
+            </a>
+            <div class="card-body">
+              <h5 class="card-title">{{ teacher }}</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.
+
+              </p>
+              {% if user.is_superuser %}
+                <a href="{% url 'users:edit_teacher' teacher.pk %}" class="card-link">Редактировать</a>
+                <a href="{% url 'users:delete_teacher' teacher.pk %}" class="card-link">Удалить</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
 {% endblock %}

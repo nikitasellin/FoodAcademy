@@ -6,9 +6,11 @@ app_name = 'courses'
 
 urlpatterns = [
     path('',
-         views.CoursesListView.as_view(), name='index'),
+         views.CourseListView.as_view(), name='index'),
     path('courses/addcourse/',
-         views.AddCourseView.as_view(), name='add_course'),
-    path('courses/edit_course/<int:pk>',
-         views.EditCourseView.as_view(), name='edit_course')
+         views.CourseAddView.as_view(), name='add_course'),
+    path('courses/editcourse/<int:pk>',
+         views.CourseEditView.as_view(), name='edit_course'),
+    path('courses/deletecourse/<int:pk>',
+         views.CourseDeleteView.as_view(), name='delete_course')
 ]
