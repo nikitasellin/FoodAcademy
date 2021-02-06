@@ -10,17 +10,16 @@
   {% for field in form %}
     <div class="form-group">
       <div class="row">
-        <div class="col-lg-2">
+        <div class="col-lg-4">
           {{ field.label_tag }}
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-8">
           {% if field.field.widget.input_type == "checkbox" %}
-            {% for choice in field %}
-              <p class="form-check text-nowrap">
-                {{ choice }}
-                {{ choice.label }}
-              </p>
-            {% endfor %}
+            <ul class="list-group list-group-flush">
+              {% for choice in field %}
+                <li class="list-group-item">{{ choice }}{{ choice.label }}</li>
+              {% endfor %}
+            </ul>
           {% else %}
             {{ field }}
           {% endif %}
@@ -39,6 +38,7 @@
         </small>
       {% endif %}
     </div>
+    <hr>
   {% endfor %}
   <input type="hidden" name="next" value="{{ next }}" />
   <button type="submit" class="btn btn-secondary">Ввод</button>

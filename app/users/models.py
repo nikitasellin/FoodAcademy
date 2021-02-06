@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.core.validators import RegexValidator
+from django.urls import reverse_lazy
 
 from .managers import CommonUserManager
 
@@ -53,6 +54,11 @@ class Teacher(CommonUser):
         verbose_name_plural = 'Преподаватели'
 
     bio = models.TextField('Биография', blank=True, null=True)
+
+    @property
+    def get_absolute_url(self):
+        return reverse_lazy(
+            'users:teacher_detail', kwargs={'pk': self.pk})
 
 
 class Student(CommonUser):

@@ -19,7 +19,7 @@ class Course(models.Model):
     @property
     def get_absolute_url(self):
         return reverse_lazy(
-            'courses:details', kwargs={'pk': self.pk})
+            'courses:course_detail', kwargs={'pk': self.pk})
 
     def __str__(self):
         return self.title
