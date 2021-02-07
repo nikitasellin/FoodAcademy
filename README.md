@@ -22,6 +22,7 @@ app/ - проект
     courses/    - основное приложение (курсы, группы, расписание)
         management/
             commands/
+                add_courses.py
         migrations/ 
         tests/     
         admin.py
@@ -30,7 +31,8 @@ app/ - проект
         urls.py
     users/  - приложение для управления пользоваталями (администраторы, преподаватели, студенты)
         management/
-            commands/    
+            commands/   
+                add_users.py
         migrations/ 
         tests/     
         admin.py
@@ -75,3 +77,5 @@ http://127.0.0.1:8000/
 ```
 http://127.0.0.1:8000/admin/ (Администрирование Django)
 ```
+
+Суперпользователю доступно добавление/редактирование курсов и преподавателей в интерфейсе.
