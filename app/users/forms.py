@@ -7,4 +7,5 @@ from .models import Teacher
 class TeacherForm(UserCreationForm):
     class Meta:
         model = Teacher
-        fields = ('email', 'first_name', 'last_name', 'avatar', 'bio')
+        fields = ('email', 'first_name', 'last_name',
+                  'phone_number', 'avatar', 'bio')

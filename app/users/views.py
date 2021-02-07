@@ -24,7 +24,8 @@ class TeacherAddView(SuperUserPassesTestMixin, CreateView):
 
 class TeacherEditView(SuperUserPassesTestMixin, UpdateView):
     model = Teacher
-    fields = ('first_name', 'last_name', 'avatar', 'bio')
+    fields = (
+        'first_name', 'last_name', 'phone_number', 'avatar', 'bio')
     extra_context = {
         'page_title': 'редактирование личных данных преподавателя'}
     success_url = reverse_lazy('users:teacher_list')

@@ -22,7 +22,7 @@
               <img src="{{ teacher.avatar.thumbnail.url }}" class="card-img-top" alt="{{ teacher }}">
             </a>
             <div class="card-body">
-              <h5 class="card-title text-center">{{ teacher|title }}</h5>
+              <p class="card-title text-center"><b>{{ teacher|title }}</b></p>
               {% if user.is_superuser %}
                 <p class="card-text text-center">
                   <a href="{% url 'users:teacher_edit' teacher.pk %}" class="card-link">Редактировать</a>
