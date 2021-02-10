@@ -1,3 +1,4 @@
+from django.core.mail import send_mail
 from django.core.validators import RegexValidator
 from django.db import models
 
@@ -45,6 +46,15 @@ class Message(models.Model):
     @property
     def full_name(self):
         return f'{self.first_name} {self.last_name}'
+
+    def send_emails(self):
+        send_mail(
+            'Subject',
+            'Message.',
+            self.email,
+            [self.email, ],
+            fail_silently=False
+        )
 
     def __str__(self):
         return f'{self.title} ({self.full_name})'

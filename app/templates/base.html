@@ -30,7 +30,7 @@
               <a class="nav-link" href="{% url 'users:teacher_list' %}">Преподаватели</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
+              <a class="nav-link" href="{% url 'contactus:send_message' %}">Контакты</a>
             </li>
             {% if request.user.is_superuser %}
               <li>

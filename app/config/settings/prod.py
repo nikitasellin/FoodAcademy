@@ -19,3 +19,7 @@ DATABASES = {
         'PORT': '5432'
     }
 }
+
+# Change it with real backend
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = 'tmp/contactus/email/'
