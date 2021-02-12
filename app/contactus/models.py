@@ -4,6 +4,8 @@ from django.db import models
 
 from django.conf import settings
 
+from contactus.tasks import async_send_mail
+
 
 class Message(models.Model):
     """
@@ -51,7 +53,7 @@ class Message(models.Model):
 
     def send_emails(self):
         # Message to user
-        send_mail(
+        async_send_mail.delay(
             f'Ваше сообщение "{self.title}" принято.',
             'Ваше сообщение принято. Мы свяжемся с Вами!',
             settings.ADMIN_EMAIL,
@@ -59,7 +61,7 @@ class Message(models.Model):
             fail_silently=False
         )
         # Message to admin
-        send_mail(
+        async_send_mail.delay(
             f'Новое сообщение "{self.title}" от "{self.full_name}"',
             self.text,
             self.email,
