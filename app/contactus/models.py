@@ -2,6 +2,8 @@ from django.core.mail import send_mail
 from django.core.validators import RegexValidator
 from django.db import models
 
+from django.conf import settings
+
 
 class Message(models.Model):
     """
@@ -48,11 +50,20 @@ class Message(models.Model):
         return f'{self.first_name} {self.last_name}'
 
     def send_emails(self):
+        # Message to user
         send_mail(
-            'Subject',
-            'Message.',
+            f'Ваше сообщение "{self.title}" принято.',
+            'Ваше сообщение принято. Мы свяжемся с Вами!',
+            settings.ADMIN_EMAIL,
+            [self.email],
+            fail_silently=False
+        )
+        # Message to admin
+        send_mail(
+            f'Новое сообщение "{self.title}" от "{self.full_name}"',
+            self.text,
             self.email,
-            [self.email, ],
+            [settings.ADMIN_EMAIL],
             fail_silently=False
         )
 

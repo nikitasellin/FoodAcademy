@@ -100,3 +100,6 @@ THUMBNAIL_ALIASES = {
         'photo': {'size': (300, 300), 'crop': 'smart'},
     },
 }
+
+CELERY_BROKER_URL = 'redis://redis:6379'
+CELERY_RESULT_BACKEND = 'redis://redis:6379'

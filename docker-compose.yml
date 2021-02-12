@@ -31,3 +31,19 @@ services:
     volumes:
       - ../foodacademy-pgdb:/var/lib/postgresql/data
       - ./deploy/Moscow:/etc/localtime
+
+  redis:
+    image: redis:6.0.10-alpine
+    ports:
+      - 6379:6379
+
+  celery:
+    build:
+      context: .
+    environment:
+      DJANGO_SETTINGS_MODULE: ${DJANGO_SETTINGS_MODULE}
+    depends_on:
+      - redis
+    volumes:
+      - ./app:/app
+    command: ./start_celery.sh
