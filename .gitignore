@@ -132,5 +132,7 @@ dmypy.json
 
 app/media/teacher/*.jpeg
 app/media/teacher/*.jpg
+app/media/teacher/*.png
 app/media/course/*.jpeg
 app/media/course/*.jpg
+app/media/course/*.png
