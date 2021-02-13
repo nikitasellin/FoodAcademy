@@ -6,3 +6,5 @@ WORKDIR /app
 COPY deploy/requirements.txt ./
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
+RUN mkdir -p media/
+COPY app/static/images media/
