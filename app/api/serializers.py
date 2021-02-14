@@ -22,7 +22,13 @@ class TeacherAdminSerializer(serializers.ModelSerializer):
     class Meta:
         model = Teacher
         fields = ('id', 'first_name', 'last_name', 'email',
-                  'phone_number', 'bio', 'avatar')
+                  'phone_number', 'bio', 'avatar', 'password')
+
+    def create(self, validated_data):
+        teacher = super().create(validated_data)
+        teacher.set_password(validated_data['password'])
+        teacher.save()
+        return teacher
 
 
 class CourseAdminSerializer(serializers.ModelSerializer):
