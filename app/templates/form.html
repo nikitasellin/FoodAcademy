@@ -10,7 +10,7 @@
   {% for field in form %}
     <div class="form-group">
       <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-4 text-right">
           {{ field.label_tag }}
         </div>
         <div class="col-lg-8">
@@ -40,6 +40,13 @@
     </div>
     <hr>
   {% endfor %}
-  <input type="hidden" name="next" value="{{ next }}" />
-  <button type="submit" class="btn btn-secondary">Ввод</button>
+  <div class="row">
+    <div class="col-lg-4 text-right">
+      {{ field.label_tag }}
+    </div>
+    <div class="col-lg-8">
+      <input type="hidden" name="next" value="{{ next }}" />
+      <button type="submit" class="btn btn-secondary">Ввод</button>
+    </div>
+  </div>
 </form>

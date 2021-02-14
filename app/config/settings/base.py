@@ -17,11 +17,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'rest_framework',
     'easy_thumbnails',
 
     'users.apps.UsersConfig',
     'courses.apps.CoursesConfig',
-    'contactus.apps.ContactusConfig'
+    'contactus.apps.ContactusConfig',
+    'api.apps.ApiConfig'
 ]
 
 MIDDLEWARE = [
@@ -103,3 +105,12 @@ THUMBNAIL_ALIASES = {
 
 CELERY_BROKER_URL = 'redis://redis:6379'
 CELERY_RESULT_BACKEND = 'redis://redis:6379'
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}

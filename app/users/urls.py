@@ -21,4 +21,5 @@ urlpatterns = [
          views.TeacherEditView.as_view(), name='teacher_edit'),
     path('teacher/delete/<int:pk>/',
          views.TeacherDeleteView.as_view(), name='teacher_delete'),
+    path('profile/<int:pk>/', views.UserProfileView.as_view(), name='user_profile'),
 ]
