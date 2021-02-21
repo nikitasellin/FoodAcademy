@@ -36,7 +36,7 @@ class CourseGroup(models.Model):
     title = models.CharField(
         'Название', max_length=100, unique=True, blank=False, null=False)
     course = models.ForeignKey(
-        Course, related_name='course_group', on_delete=models.PROTECT)
+            Course, related_name='course_group', on_delete=models.PROTECT)
     students = models.ManyToManyField(
         Student, related_name='course_groups')
     start_date = models.DateField(

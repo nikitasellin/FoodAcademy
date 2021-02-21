@@ -19,6 +19,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'easy_thumbnails',
+    'graphene_django',
 
     'users.apps.UsersConfig',
     'courses.apps.CoursesConfig',
